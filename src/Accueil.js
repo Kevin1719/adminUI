@@ -1,10 +1,9 @@
-import React from 'react'
+import './Accueil.css'
 import {Carousel} from 'react-bootstrap'
-import '../styles/Accueil.css'
-import image1 from '../assets/imgs/FB_IMG_1664264250813.jpg'
-import image2 from '../assets/imgs/FB_IMG_1664264145338.jpg'
-import image3 from '../assets/imgs/FB_IMG_1664264164167.jpg'
-import image4 from '../assets/imgs/FB_IMG_1664264237832.jpg'
+import image1 from './assets/imgs/FB_IMG_1664264250813.jpg'
+import image2 from './assets/imgs/FB_IMG_1664264145338.jpg'
+import image3 from './assets/imgs/FB_IMG_1664264164167.jpg'
+import image4 from './assets/imgs/FB_IMG_1664264237832.jpg'
 const Accueil = () => {
     return (
         <div className='carrousel'>
