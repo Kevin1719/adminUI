@@ -5,11 +5,14 @@ import Navbar from './Navbar'
 import Inscription from './coursPrepa/Inscription'
 import Accueil from "./Accueil";
 import ListeDesEtudiants from "./ListeDesEtudiants/ListeDesEtudiants";
-
+import Datatable from "./table/datatable/Datatable";
 function App() {
   return (
     <>
      <Navbar />
+     <Routes>
+      <Route path="/table" element={  <Datatable /> } />
+     </Routes>
      <Routes>
       <Route path="/" element={  <Accueil /> } />
      </Routes>

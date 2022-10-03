@@ -10,13 +10,15 @@ const ModelList = ({ data }) => {
   const [annee, setAnnee] = useState('');
   const [grp, setGrp] = useState('');
   const ans = []
-  const groupe = ["all"]
+  const groupe = []
+
   data.map(donnee => (
     ans.includes(donnee.annee) ? ans : ans.push(donnee.annee)
   ))
   data.map(donnee => (
     groupe.includes(donnee.groupe) ? groupe : groupe.push(donnee.groupe)
   ))
+  
   return (
     <div>
       <Container>
@@ -30,12 +32,12 @@ const ModelList = ({ data }) => {
           </InputGroup>
         </Form>
         
-          <select onChange={e=>{setAnnee(e.target.value)}}>
+          <select onChange={e=>{setAnnee(e.target.value)}} style={{cursor:'pointer'}}>
             {ans.length > 0 && ans.sort().reverse() && ans.map(y => (
               <option value={y}>{y}</option>
             ))}
           </select>
-          <select onChange={e=>{setGrp(e.target.value)}}>
+          <select onChange={e=>{setGrp(e.target.value)}} style={{cursor:'pointer'}}>
             {groupe.length > 0 && groupe && groupe.map(gp => (
               <option value={gp}>{gp}</option>
             ))}
@@ -51,19 +53,31 @@ const ModelList = ({ data }) => {
               <th>Groupe</th>
             </tr>
           </thead>
-          <tbody>
-            {data
-              .filter((item) => {
-                return search.toLowerCase() === ''
-                  ? item.annee.includes(annee)&&item.groupe.includes(grp)
-                  : item.candidat.prenom.toLowerCase().includes(search)&&item.annee.includes(annee)&&item.groupe.includes(grp);
+          <tbody style={{cursor:'pointer'}}>
+
+              {/*
+
+                if(search.toLowerCase() === '' && grp === "all"){
+                  return item.annee.includes(annee)
+                }
+                else if(search.toLowerCase() !== ''){
+                  return  item.candidat.prenom.toLowerCase().includes(search)&&item.annee.includes(annee)
+                }
+                
+              */}
+
+            {data &&
+              data.filter((items) => {
+                  return search.toLowerCase() === ''
+                    ? items.annee.includes(annee)&&items.groupe.includes(grp)
+                    : items.candidat.prenom.toLowerCase().includes(search)&&items.annee.includes(annee)&&items.groupe.includes(grp);
               })
               .map((item, index) => (
                 <tr key={index}>
                   <td>{item.candidat.prenom}</td>
                   <td>{item.candidat.nom}</td>
                   <td>{item.candidat.email}</td>
-                  <td><button className='btn btn-info' onClick={(e)=>console.log(item.candidat.id)} >{item.annee}</button></td>
+                  <td>{item.annee}</td>
                   <td>{item.groupe}</td>
                 </tr>
               ))}
